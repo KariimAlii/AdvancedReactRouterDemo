@@ -2,7 +2,8 @@
 import {useLoaderData} from "react-router-dom";
 
 export default function EventsPage() {
-    const events = useLoaderData();
+    const response = useLoaderData();
+    const events = response.events;
     return (
         <EventsList events={events} />
     );
@@ -14,10 +15,7 @@ export async function eventsLoader() {
     if (!response.ok) {
         // ...
     } else {
-        const resData = await response.json();
-        // return resData.events;
-        const res = new Response('any data', { status: 201 });
-        return res;
+        return response;
     }
 }
 
