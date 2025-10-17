@@ -3,6 +3,9 @@ import {useLoaderData} from "react-router-dom";
 
 export default function EventsPage() {
     const response = useLoaderData();
+    if(response.isError) {
+        return <p>{response.message}</p>
+    }
     const events = response.events;
     return (
         <EventsList events={events} />
@@ -17,10 +20,14 @@ export async function eventsLoader() {
     //!
     //! -> You can't use React Hooks
     //!     useState() ❌❌
-    const response = await fetch('http://localhost:8080/events');
+    const response = await fetch('http://localhost:8080/eventsjj');
 
     if (!response.ok) {
-        // ...
+        // return new Response() ✅✅
+        return {
+            isError: true,
+            message: "Could not fetch events."
+        }
     } else {
         return response;
     }
