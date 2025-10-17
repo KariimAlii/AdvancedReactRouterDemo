@@ -8,6 +8,7 @@ import NewEventPage from "./pages/NewEventPage.jsx";
 import EditEventPage from "./pages/EditEventPage.jsx";
 import Layout from "./pages/Layout.jsx";
 import EventRootLayoutPage from "./components/EventRootLayoutPage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 // Challenge / Exercise
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
     {
         path : '/',
         element: <Layout/>,
+        errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage/> },
             {
@@ -44,6 +46,7 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <EventsPage/>,
+                        //! errorElement: <ErrorPage />, ✅✅
                         loader: eventsLoader
                     },
                     { path : ':eventId', element: <EventDetailsPage/> },
