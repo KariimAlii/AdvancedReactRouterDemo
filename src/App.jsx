@@ -7,6 +7,7 @@ import EventDetailsPage from "./pages/EventDetailsPage.jsx";
 import NewEventPage from "./pages/NewEventPage.jsx";
 import EditEventPage from "./pages/EditEventPage.jsx";
 import Layout from "./pages/Layout.jsx";
+import EventRootLayoutPage from "./components/EventRootLayoutPage.jsx";
 
 // Challenge / Exercise
 
@@ -36,10 +37,16 @@ const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             { index: true, element: <HomePage/> },
-            { path : 'events', element: <EventsPage/> },
-            { path : 'events/:eventId', element: <EventDetailsPage/> },
-            { path : 'events/new', element: <NewEventPage/> },
-            { path : 'events/:eventId/edit', element: <EditEventPage/> },
+            {
+                path: 'events',
+                element: <EventRootLayoutPage/>,
+                children: [
+                    { path : '', element: <EventsPage/> },
+                    { path : ':eventId', element: <EventDetailsPage/> },
+                    { path : 'new', element: <NewEventPage/> },
+                    { path : ':eventId/edit', element: <EditEventPage/> },
+                ]
+            },
         ]
     },
 ])
