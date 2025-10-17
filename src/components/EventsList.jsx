@@ -1,9 +1,7 @@
 import classes from './styles/EventsList.module.css';
-import {useLoaderData} from "react-router-dom";
 
-function EventsList() {
+function EventsList({events}) {
     //! You can access loader data in the same level or any lower level component
-    const events = useLoaderData();
   return (
     <div className={classes.events}>
       <h1>All Events</h1>
