@@ -10,6 +10,13 @@ export default function EventsPage() {
 }
 
 export async function eventsLoader() {
+    //! In loader functions
+    //!===========================
+    //! -> You can use browser apis
+    //!     LocalStorage.setItem() ✅✅
+    //!
+    //! -> You can't use React Hooks
+    //!     useState() ❌❌
     const response = await fetch('http://localhost:8080/events');
 
     if (!response.ok) {
