@@ -1,9 +1,20 @@
 import classes from './styles/EventItem.module.css';
-import {Link} from "react-router-dom";
+import {Link, useSubmit} from "react-router-dom";
 
 function EventItem({ event }) {
+    const submit = useSubmit();
   function startDeleteHandler() {
-    // ...
+
+    const proceed = window.confirm('Are you sure?');
+
+    if(proceed) {
+        //! first parameter : formData that can be accessed in the action ==> [[ const data = await request.formData(); ]]
+        //! second parameter : form attributes object { method , action }
+        submit(null, { method: 'delete' })
+
+        // ! if you need another path other than the currently active path
+        // ! submit(null, { method: 'delete', action: '/different-path'})
+    }
   }
 
   return (
