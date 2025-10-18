@@ -9,7 +9,7 @@ function EventForm({ method, event }) {
   }
     //! this <Form> on submit triggers the action of the currently active route
   return (
-    <Form method='post' className={classes.form}>
+    <Form method='post' action="/specific-action-path" className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required defaultValue={event && event.title} />
