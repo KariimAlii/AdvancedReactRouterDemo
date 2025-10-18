@@ -1,3 +1,9 @@
-﻿export default function NewEventPage() {
-    return <h1>New Event Page</h1>
+﻿import EventForm from "../components/EventForm.jsx";
+
+export default function NewEventPage() {
+    function submitHandler(event) {
+        event.preventDefault();
+    }
+
+    return <EventForm />
 }
