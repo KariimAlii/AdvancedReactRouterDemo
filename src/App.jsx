@@ -4,11 +4,13 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import EventsPage, {eventsLoader} from "./pages/EventsPage.jsx";
 import EventDetailsPage, {deleteEventAction, eventDetailsLoader} from "./pages/EventDetailsPage.jsx";
-import NewEventPage, {newEventAction} from "./pages/NewEventPage.jsx";
+import NewEventPage from "./pages/NewEventPage.jsx";
 import EditEventPage from "./pages/EditEventPage.jsx";
 import Layout from "./pages/Layout.jsx";
 import EventRootLayoutPage from "./components/EventRootLayoutPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import {newEventAction} from "./components/EventForm.jsx";
+
 
 // Challenge / Exercise
 
@@ -64,7 +66,8 @@ const router = createBrowserRouter([
                             },
                             {
                                 path : 'edit',
-                                element: <EditEventPage/>
+                                element: <EditEventPage/>,
+                                action: newEventAction
                             },
                         ]
                     },
