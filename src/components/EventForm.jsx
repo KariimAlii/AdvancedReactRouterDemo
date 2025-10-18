@@ -7,7 +7,7 @@ function EventForm({ method, event }) {
   function cancelHandler() {
     navigate('..');
   }
-
+    //! this <Form> on submit triggers the action of the currently active route
   return (
     <Form method='post' className={classes.form}>
       <p>
