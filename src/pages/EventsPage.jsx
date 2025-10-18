@@ -20,7 +20,7 @@ export async function eventsLoader() {
     //!
     //! -> You can't use React Hooks
     //!     useState() ❌❌
-    const response = await fetch('http://localhost:8080/eventsjj');
+    const response = await fetch('http://localhost:8080/events');
 
     if (!response.ok) {
         // return new Response() ✅✅
