@@ -1,8 +1,8 @@
-﻿import {Link, useLoaderData, useParams} from "react-router-dom";
+﻿import {Link, useParams, useRouteLoaderData} from "react-router-dom";
 import EventItem from "../components/EventItem.jsx";
 
 export default function EventDetailsPage() {
-    const data = useLoaderData();
+    const data = useRouteLoaderData('event-details');
 
     const {eventId} = useParams();
 
