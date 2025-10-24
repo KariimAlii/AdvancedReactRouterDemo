@@ -1,5 +1,5 @@
 import classes from './styles/MainNavigation.module.css';
-import {NavLink} from "react-router-dom";
+import {Form, NavLink} from "react-router-dom";
 
 function MainNavigation() {
   return (
@@ -31,6 +31,12 @@ function MainNavigation() {
             >
               Authentication
             </NavLink>
+          </li>
+          <li>
+            <Form action="/logout" method="post">
+              <button>Logout</button>
+            </Form>
+
           </li>
         </ul>
       </nav>

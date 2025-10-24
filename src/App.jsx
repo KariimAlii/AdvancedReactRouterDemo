@@ -11,6 +11,7 @@ import EventRootLayoutPage from "./components/EventRootLayoutPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import {newEventAction} from "./components/EventForm.jsx";
 import AuthenticationPage, {authenticationAction} from "./pages/AuthenticationPage.jsx";
+import logoutAction from "./pages/Logout.js";
 
 
 // Challenge / Exercise
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
                 path: 'auth',
                 element: <AuthenticationPage/>,
                 action: authenticationAction
+            },
+            {
+                path: 'logout',
+                action: logoutAction
             },
             {
                 path: 'events',
