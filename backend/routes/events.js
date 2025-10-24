@@ -1,6 +1,7 @@
 const express = require('express');
 
 const { getAll, get, add, replace, remove } = require('../data/event');
+const { checkAuth } = require('../util/auth');
 const {
   isValidText,
   isValidDate,
@@ -10,6 +11,7 @@ const {
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
+  console.log(req.token);
   try {
     const events = await getAll();
     res.json({ events: events });
@@ -27,7 +29,10 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.use(checkAuth);
+
 router.post('/', async (req, res, next) => {
+  console.log(req.token);
   const data = req.body;
 
   let errors = {};
@@ -52,14 +57,12 @@ router.post('/', async (req, res, next) => {
     return res.status(422).json({
       message: 'Adding the event failed due to validation errors.',
       errors,
-    }); //! error messages
+    });
   }
 
   try {
     await add(data);
-    setTimeout(() => {
-      res.status(201).json({ message: 'Event saved.', event: data });
-    }, 1500)
+    res.status(201).json({ message: 'Event saved.', event: data });
   } catch (error) {
     next(error);
   }
