@@ -2,5 +2,6 @@
 
 export default function logoutAction() {
     localStorage.removeItem("token");
+    localStorage.removeItem("expiration");
     return redirect("/");
 }
