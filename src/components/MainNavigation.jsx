@@ -9,7 +9,7 @@ function MainNavigation() {
           <li>
             <NavLink
                 to="/"
-                className={({ isActive }) => isActive ? classes.active : null}
+                className={({isActive}) => isActive ? classes.active : null}
                 end
             >
               Home
@@ -18,9 +18,18 @@ function MainNavigation() {
           <li>
             <NavLink
                 to="/events"
-                className={({ isActive }) => isActive ? classes.active : null}
+                className={({isActive}) => isActive ? classes.active : null}
             >
               Events
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+                to="/auth"
+                className={({isActive}) => isActive ? classes.active : null}
+            >
+              Authentication
             </NavLink>
           </li>
         </ul>
