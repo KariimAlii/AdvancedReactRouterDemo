@@ -1,5 +1,6 @@
 ﻿import AuthForm from '../components/AuthForm.jsx';
 import {redirect} from "react-router-dom";
+import {setAuthToken} from "../util/auth.js";
 
 function AuthenticationPage() {
     return <AuthForm />;
@@ -48,7 +49,10 @@ export async function authenticationAction({request}) {
     }
 
     //! manage jwt token
-    //!
+    const resData = await response.json();
+    const token = resData.token;
+    setAuthToken(token);
+
     return redirect('/');
 
 }
