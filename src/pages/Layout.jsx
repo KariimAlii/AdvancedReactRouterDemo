@@ -1,5 +1,6 @@
 ﻿import MainNavigation from "../components/MainNavigation.jsx";
-import {Outlet, useLoaderData, useNavigation} from "react-router-dom";
+import {Outlet, useLoaderData, useNavigation, useSubmit} from "react-router-dom";
+import {useEffect} from "react";
 
 export default function Layout() {
     //! You can't read loader data in a higher level component
@@ -10,6 +11,17 @@ export default function Layout() {
     //! useNavigation() hook is used to get information about the current active navigation transition
     const navigation = useNavigation();
     //! navigation.state ===> 'idle' || 'loading' || 'submitting';
+    const token = useLoaderData() //! or useRouteLoaderData('root')
+    const submit = useSubmit();
+    //! clear the jwt token after 1 hour
+    useEffect(() => {
+        if(!token) {
+            return;
+        }
+        setTimeout(() => {
+            submit(null, { action: '/logout', method:'post' })
+        }, 1 * 60 * 60 * 1000)
+    }, [token, submit])
     return (
         <>
             <MainNavigation/>
