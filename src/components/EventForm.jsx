@@ -78,7 +78,7 @@ export async function newEventAction({request, params}) {
         body: JSON.stringify(eventData),
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         }
     });
 
