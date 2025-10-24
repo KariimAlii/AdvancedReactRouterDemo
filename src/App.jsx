@@ -10,7 +10,7 @@ import Layout from "./pages/Layout.jsx";
 import EventRootLayoutPage from "./components/EventRootLayoutPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import {newEventAction} from "./components/EventForm.jsx";
-import AuthenticationPage from "./pages/AuthenticationPage.jsx";
+import AuthenticationPage, {authenticationAction} from "./pages/AuthenticationPage.jsx";
 
 
 // Challenge / Exercise
@@ -47,7 +47,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'auth',
-                element: <AuthenticationPage/>
+                element: <AuthenticationPage/>,
+                action: authenticationAction
             },
             {
                 path: 'events',
