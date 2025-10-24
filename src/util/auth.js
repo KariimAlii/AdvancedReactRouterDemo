@@ -6,3 +6,7 @@
 export function setAuthToken(token) {
     localStorage.setItem('token', token);
 }
+
+export function tokenLoader() {
+    return getAuthToken();
+}

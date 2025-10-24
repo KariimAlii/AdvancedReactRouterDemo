@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import {newEventAction} from "./components/EventForm.jsx";
 import AuthenticationPage, {authenticationAction} from "./pages/AuthenticationPage.jsx";
 import logoutAction from "./pages/Logout.js";
+import {tokenLoader} from "./util/auth.js";
 
 
 // Challenge / Exercise
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
         path : '/',
         element: <Layout/>,
         errorElement: <ErrorPage />,
+        loader: tokenLoader, //! keep the token available for the entire app routes
+        id: 'root',
         children: [
             {
                 index: true,
