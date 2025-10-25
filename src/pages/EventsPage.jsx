@@ -20,7 +20,9 @@ export async function eventsLoader() {
     //!
     //! -> You can't use React Hooks
     //!     useState() ❌❌
-    const response = await fetch('https://events-app-express-api.vercel.app/events');
+
+    const baseUrl = import.meta.env.VITE_API_URL;
+    const response = await fetch(baseUrl + '/events');
 
     if (!response.ok) {
         // return new Response() ✅✅

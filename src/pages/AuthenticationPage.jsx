@@ -26,8 +26,10 @@ export async function authenticationAction({request}) {
         )
     }
 
+    const baseUrl = import.meta.env.VITE_API_URL;
+
     const response = await fetch(
-        `https://events-app-express-api.vercel.app/${mode}`,
+        `${baseUrl}/${mode}`,
         {
             method: 'POST',
             headers: {

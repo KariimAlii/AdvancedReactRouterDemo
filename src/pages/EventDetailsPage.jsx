@@ -19,8 +19,8 @@ export default function EventDetailsPage() {
 
 export async function deleteEventAction({ params, request }) {
     const token = getAuthToken();
-
-    const response = await fetch('https://events-app-express-api.vercel.app/events/' + params.eventId, {
+    const baseUrl = import.meta.env.VITE_API_URL;
+    const response = await fetch(baseUrl + '/events/' + params.eventId, {
         method: 'DELETE', // request.method
         headers: {
             'Authorization': `Bearer ${token}`

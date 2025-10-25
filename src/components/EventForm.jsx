@@ -64,11 +64,13 @@ export async function newEventAction({request, params}) {
         description: data.get('description'),
     };
 
-    let url = 'https://events-app-express-api.vercel.app/events';
+    const baseUrl = import.meta.env.VITE_API_URL;
+
+    let url = baseUrl + '/events';
 
     if (method === 'PATCH') {
         const eventId = params.eventId;
-        url = 'https://events-app-express-api.vercel.app/events/' + eventId;
+        url = baseUrl + '/events/' + eventId;
     }
 
     const token = getAuthToken();
