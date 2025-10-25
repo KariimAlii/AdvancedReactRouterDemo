@@ -32,6 +32,7 @@ export default function Layout() {
     }, [token, submit])
     return (
         <>
+            <h1>{import.meta.env.VITE_API_URL}</h1>
             <MainNavigation/>
             <main>
                 {navigation.state === 'loading' && <p>Loading.....</p>}
