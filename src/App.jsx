@@ -2,7 +2,6 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
-import EventsPage, {eventsLoader} from "./pages/EventsPage.jsx";
 import EventDetailsPage, {deleteEventAction, eventDetailsLoader} from "./pages/EventDetailsPage.jsx";
 import NewEventPage from "./pages/NewEventPage.jsx";
 import EditEventPage from "./pages/EditEventPage.jsx";
@@ -64,9 +63,13 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <EventsPage/>,
-                        //! errorElement: <ErrorPage />, ✅✅
-                        loader: eventsLoader
+                        lazy: async () => {
+                            const module = await import('./pages/EventsPage.jsx');
+                            return {
+                                Component: module.default,
+                                loader: module.eventsLoader,
+                            };
+                        }
                     },
                     {
                         path : ':eventId',
