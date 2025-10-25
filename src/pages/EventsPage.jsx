@@ -12,29 +12,5 @@ export default function EventsPage() {
     );
 }
 
-export async function eventsLoader() {
-    //! In loader functions
-    //!===========================
-    //! -> You can use browser apis
-    //!     LocalStorage.setItem() ✅✅
-    //!
-    //! -> You can't use React Hooks
-    //!     useState() ❌❌
-    const response = await fetch('http://localhost:8080/events');
 
-    if (!response.ok) {
-        // return new Response() ✅✅
-        // return {
-        //     isError: true,
-        //     message: "Could not fetch events."
-        // } ✅✅
-        // throw { message: 'Could not fetch events.' };
-        throw new Response(
-            JSON.stringify({ message: "Could not fetch events" }),
-            { status: 500 }
-        );
-    } else {
-        return response;
-    }
-}
 
