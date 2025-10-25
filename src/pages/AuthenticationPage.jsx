@@ -27,7 +27,7 @@ export async function authenticationAction({request}) {
     }
 
     const response = await fetch(
-        `http://localhost:8080/${mode}`,
+        `https://events-app-express-api.vercel.app/${mode}`,
         {
             method: 'POST',
             headers: {

@@ -20,7 +20,7 @@ export async function eventsLoader() {
     //!
     //! -> You can't use React Hooks
     //!     useState() ❌❌
-    const response = await fetch('http://localhost:8080/events');
+    const response = await fetch('https://events-app-express-api.vercel.app/events');
 
     if (!response.ok) {
         // return new Response() ✅✅

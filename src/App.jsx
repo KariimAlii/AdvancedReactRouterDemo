@@ -117,7 +117,7 @@ async function eventDetailsLoader({request, params}) {
     // request.url ✅✅
     // params.eventId ✅✅
     //!  const {eventId} = useParams(); ❌❌ you can't use hooks inside a loader
-    const response = await fetch(`http://localhost:8080/events/${params.eventId}`)
+    const response = await fetch(`https://events-app-express-api.vercel.app/events/${params.eventId}`)
 
     if(!response.ok) {
         throw new Response(
