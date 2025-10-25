@@ -2,7 +2,6 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
-import EventDetailsPage, {deleteEventAction, eventDetailsLoader} from "./pages/EventDetailsPage.jsx";
 import NewEventPage from "./pages/NewEventPage.jsx";
 import EditEventPage from "./pages/EditEventPage.jsx";
 import Layout from "./pages/Layout.jsx";
@@ -78,8 +77,13 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: <EventDetailsPage/>,
-                                action: deleteEventAction
+                                lazy: async () => {
+                                    const module = await import('./pages/EventDetailsPage.jsx');
+                                    return {
+                                        Component: module.default,
+                                        action: module.deleteEventAction,
+                                    };
+                                }
                             },
                             {
                                 path : 'edit',
@@ -108,3 +112,19 @@ function App() {
 }
 
 export default App
+
+async function eventDetailsLoader({request, params}) {
+    // request.url ✅✅
+    // params.eventId ✅✅
+    //!  const {eventId} = useParams(); ❌❌ you can't use hooks inside a loader
+    const response = await fetch(`http://localhost:8080/events/${params.eventId}`)
+
+    if(!response.ok) {
+        throw new Response(
+            JSON.stringify({ message: "Could not fetch selected event" }),
+            { status: 500 }
+        );
+    }
+
+    return response;
+}
