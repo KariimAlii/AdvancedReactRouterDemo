@@ -1,7 +1,10 @@
 ﻿import {redirect} from "react-router-dom";
+import { logout } from '../store/authSlice';
+import store from '../store';
+
+
 
 export default function logoutAction() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("expiration");
+    store.dispatch(logout())
     return redirect("/");
 }

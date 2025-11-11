@@ -1,7 +1,7 @@
 ﻿import AuthForm from '../components/AuthForm.jsx';
 import {redirect} from "react-router-dom";
-import {setAuthToken, setExpirationDate} from "../util/auth.js";
-
+import {login} from "../store/authSlice.js";
+import store from '../store/index.js';
 function AuthenticationPage() {
     return <AuthForm />;
 }
@@ -29,7 +29,7 @@ export async function authenticationAction({request}) {
     const baseUrl = import.meta.env.VITE_API_URL;
 
     const response = await fetch(
-        `${baseUrl}/${mode}`,
+        `${baseUrl}/api/auth/${mode}`,
         {
             method: 'POST',
             headers: {
@@ -52,13 +52,9 @@ export async function authenticationAction({request}) {
 
     //! manage jwt token
     const resData = await response.json();
-    const token = resData.token;
-    setAuthToken(token);
+    store.dispatch(login({ token: resData.accessToken, expiration: resData.expiration }));
 
-    const expiration = new Date();
-    expiration.setHours(expiration.getHours() + 1);
-    setExpirationDate(expiration);
 
-    return redirect('/');
+    return redirect('/dashboard');
 
 }

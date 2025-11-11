@@ -11,6 +11,10 @@ import {newEventAction} from "./components/EventForm.jsx";
 import AuthenticationPage, {authenticationAction} from "./pages/AuthenticationPage.jsx";
 import logoutAction from "./pages/Logout.js";
 import {checkAuthLoader, tokenLoader} from "./util/auth.js";
+import {Provider} from "react-redux";
+import store from './store/index.js'
+import Dashboard from "./pages/Dashboard.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 
 // Challenge / Exercise
@@ -46,6 +50,14 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage/>
+            },
+            {
+                path: 'dashboard',
+                element: (
+                    <ProtectedRoute roles={['Admin', 'Client']}>
+                        <Dashboard />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: 'auth',
@@ -107,7 +119,9 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
   )
 }
 

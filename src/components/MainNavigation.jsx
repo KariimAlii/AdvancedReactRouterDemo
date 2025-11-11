@@ -1,13 +1,20 @@
 import classes from './styles/MainNavigation.module.css';
 import {Form, NavLink, useRouteLoaderData} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function MainNavigation() {
   const token = useRouteLoaderData('root');
+  const { isAuthenticated, claims } = useSelector((state) => state.auth);
 
   return (
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
+          <li>
+            {isAuthenticated && <span>Welcome, {claims?.email}</span>}
+            {isAuthenticated && claims?.roles.includes('Admin') && <a href="/dashboard">Admin</a>}
+            {!isAuthenticated && <a href="/authentication">Login</a>}
+          </li>
           <li>
             <NavLink
                 to="/"
